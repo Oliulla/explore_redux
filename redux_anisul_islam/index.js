@@ -101,50 +101,129 @@
 // store.dispatch(increment());
 // store.dispatch(decrement());
 
-const { createStore } = require("redux");
-const INCREMENT = "INCREMENT";
-const DECREMENT = "DECREMENT";
-const RESET = "RESET";
-const initCounterState = {
+// const { createStore } = require("redux");
+// const INCREMENT = "INCREMENT";
+// const DECREMENT = "DECREMENT";
+// const RESET = "RESET";
+// const initCounterState = {
+//   count: 0,
+// };
+
+// const incrementAction = () => {
+//   return {
+//     type: INCREMENT,
+//   };
+// };
+
+// const decrementAction = () => {
+//   return {
+//     type: DECREMENT,
+//   };
+// };
+
+// const resetAction = () => {
+//   return {
+//     type: RESET,
+//   };
+// };
+
+// const createReducer = (state = initCounterState, action) => {
+//   switch (action.type) {
+//     case INCREMENT:
+//       return {
+//         ...state,
+//         count: state.count + 2,
+//       };
+//     case DECREMENT:
+//       return {
+//         ...state,
+//         count: state.count - 2,
+//       };
+
+//     case RESET:
+//       return {
+//         ...state,
+//         count: 0,
+//       };
+
+//     default:
+//       state;
+//   }
+// };
+
+// const store = createStore(createReducer);
+
+// store.subscribe(() => {
+//   console.log(store.getState());
+// })
+
+// store.dispatch(incrementAction());
+// store.dispatch(incrementAction());
+// store.dispatch(decrementAction());
+// store.dispatch(decrementAction());
+// store.dispatch(incrementAction());
+// store.dispatch(resetAction());
+
+const {createStore} = require("redux");
+
+const ADD_USER = "INCREMENT";
+// const DECREMENT = "DECREMENT";
+// const RESET = "RESET";
+// const INCREMENT_COUNTER_BY_VALUE = "INCREMENT_COUNTER_BY_VALUE";
+
+const initCounter = {
+  users: ["anisul"],
   count: 0,
 };
 
-const incrementAction = () => {
+const addUsers = (value) => {
   return {
-    type: INCREMENT,
+    type: ADD_USER,
+    payload: value
+
   };
 };
+// const decrementAction = () => {
+//   return {
+//     type: DECREMENT,
+//   };
+// };
+// const resetAction = () => {
+//   return {
+//     type: RESET,
+//   };
+// };
 
-const decrementAction = () => {
-  return {
-    type: DECREMENT,
-  };
-};
+// const incrementCounterByPayload = (value) => {
+//   return {
+//     type: INCREMENT_COUNTER_BY_VALUE,
+//     payload: value
+//   }
+// }
 
-const resetAction = () => {
-  return {
-    type: RESET,
-  };
-};
-
-const createReducer = (state = initCounterState, action) => {
+const createReducer = (state = initCounter, action) => {
   switch (action.type) {
-    case INCREMENT:
+    case ADD_USER:
       return {
-        ...state,
-        count: state.count + 2,
+        users: [...state.users, action.payload],
+        count: state.users.length + 1,
       };
-    case DECREMENT:
-      return {
-        ...state,
-        count: state.count - 2,
-      };
+    // case DECREMENT:
+    //   return {
+    //     ...state,
+    //     count: state.count - 1,
+    //   };
 
-    case RESET:
-      return {
-        ...state,
-        count: 0,
-      };
+    // case RESET:
+    //   return {
+    //     ...state,
+    //     count: 0,
+    //   };
+    // case INCREMENT_COUNTER_BY_VALUE:
+    //   return {
+    //     ...state,
+    //     count: state.count + action.payload,
+    //   };
 
     default:
       state;
@@ -157,9 +236,15 @@ store.subscribe(() => {
   console.log(store.getState());
 })
 
-store.dispatch(incrementAction());
-store.dispatch(incrementAction());
-store.dispatch(decrementAction());
-store.dispatch(decrementAction());
-store.dispatch(incrementAction());
-store.dispatch(resetAction());
+// store.dispatch(incrementAction())
+// store.dispatch(incrementAction())
+// store.dispatch(incrementAction())
+// store.dispatch(incrementAction())
+// store.dispatch(incrementAction())
+// store.dispatch(decrementAction())
+// store.dispatch(resetAction())
+
+// store.dispatch(incrementCounterByPayload(10));
+store.dispatch(addUsers("rana"))
+store.dispatch(addUsers("nana"))
+store.dispatch(addUsers("mana"))
